@@ -182,7 +182,7 @@ $("#signUp").click(function(){
 		//var messageContextPath = "signUp";
 		$.ajax({
 			method : 'POST',
-			url : "/register",
+			url : "register",
 			data : uploadAttachment,
 			cache : false,
 			contentType : false,
