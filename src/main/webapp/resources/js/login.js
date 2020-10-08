@@ -8,7 +8,7 @@ $("#signUp").click(function(){
 	var success = true;
 	var message = {};
 	$('#errorMessage').removeClass("error_class");
-	//$('#errorMessage').removeClass("save_class");
+	$('#errorMessage').removeClass("save_class");
 	//var image = $('#file-1')[0].files[0];
 
 	var firstname = $('#firstname').val();
@@ -18,6 +18,7 @@ $("#signUp").click(function(){
 		//alert("firstname required");
 		$('#errorMessage').addClass("error_class");
 		$('#errorMessage').html("Firstname required");
+		$('#errorMessage').css("background", "yellow");
 		//$('#firstName').css("border-bottom", "1px solid red");
 		success = false;
 		return;
@@ -31,6 +32,7 @@ $("#signUp").click(function(){
 			//alert("Invalid firstname");
 			$('#errorMessage').addClass("error_class");
 			$('#errorMessage').html("Invalid First Name");
+			$('#errorMessage').css("background", "yellow");
 			//$('#firstName').css("border-bottom", "1px solid red");
 			success = false;
 			return;
@@ -44,6 +46,7 @@ $("#signUp").click(function(){
 		//alert("Invalid lastname");
 		$('#errorMessage').addClass("error_class");
 		$('#errorMessage').html("Invalid Last Name");
+		$('#errorMessage').css("background", "yellow");
 		//$('#lastName').css("border-bottom", "1px solid red");
 		success = false;
 		return;
@@ -51,16 +54,18 @@ $("#signUp").click(function(){
 
 
 
-	/*if ($("#maleRadioBtn").prop("checked")) {
+	if ($("#maleRadioBtn").prop("checked")) {
 		message.gender = "male";
 	} else {
 		message.gender = "female";
-	}*/
+	}
+	
 	var username = $('#username').val();
 	if ($.trim(username) == "") {
 		//alert("Username required");
 		$('#errorMessage').addClass("error_class");
 		$('#errorMessage').html("Username required");
+		$('#errorMessage').css("background", "yellow");
 		//$('#userName').css("border-bottom", "1px solid red");
 		success = false;
 		return;
@@ -73,6 +78,7 @@ $("#signUp").click(function(){
 			//alert("Invalid Username");
 			$('#errorMessage').addClass("error_class");
 			$('#errorMessage').html("Invalid Username");
+			$('#errorMessage').css("background", "yellow");
 			//$('#userName').css("border-bottom", "1px solid red");
 			success = false;
 			return;
@@ -83,6 +89,7 @@ $("#signUp").click(function(){
 		//alert("Email address required");
 		$('#errorMessage').addClass("error_class");
 		$('#errorMessage').html("Email address required");
+		$('#errorMessage').css("background", "yellow");
 		//$('#emailId').css("border-bottom", "1px solid red");
 
 		success = false;
@@ -100,6 +107,7 @@ $("#signUp").click(function(){
 			//alert("Email address is incorrect");
 			$('#errorMessage').addClass("error_class");
 			$('#errorMessage').html("Email address is incorrect");
+			$('#errorMessage').css("background", "yellow");
 			//$('#emailId').css("border-bottom", "1px solid red");
 			success = false;
 			return;
@@ -112,6 +120,7 @@ $("#signUp").click(function(){
 		//alert("Password must contain 6 characters");
 		$('#errorMessage').addClass("error_class");
 	     $('#errorMessage').html("Password must contain 6 characters");
+	 	$('#errorMessage').css("background", "yellow");
 		//$('#password').css("border-bottom", "1px solid red");
 		success = false;
 		return;
@@ -121,6 +130,7 @@ $("#signUp").click(function(){
 		$('#errorMessage').addClass("error_class");
 
 		$('#errorMessage').html("Password required");
+		$('#errorMessage').css("background", "yellow");
 		//$('#password').css("border-bottom", "1px solid red");
 		success = false;
 		return;
@@ -132,7 +142,8 @@ $("#signUp").click(function(){
 	if ($.trim(password2) == "") {
 		//alert("Confirm password required");
 		$('#errorMessage').addClass("error_class");
-		$('#password2').css("border-bottom", "1px solid red");
+		//$('#password2').css("border-bottom", "1px solid red");
+		$('#errorMessage').css("background", "yellow");
 
 		//$('#errorMessage').html("Confirm password required");
 		success = false;
@@ -149,6 +160,7 @@ $("#signUp").click(function(){
 
 		$('#errorMessage').addClass("error_class");
 		$('#errorMessage').html("Password accepts only alpha numeric or special characters");
+		$('#errorMessage').css("background", "yellow");
 		//$('#password').css("border-bottom", "1px solid red");
 
 		success = false;
@@ -163,6 +175,7 @@ $("#signUp").click(function(){
 		//alert("Password doesn't match");
 		$('#errorMessage').addClass("error_class");
 		$('#errorMessage').html("Password doesn't match");
+		$('#errorMessage').css("background", "yellow");
 		//$('#password').css("border-bottom", "1px solid red");
 		//$('#password2').css("border-bottom", "1px solid red");
 		success = false;
@@ -269,32 +282,38 @@ $("#signUp").click(function(){
 
 $("#firstname").focus(function(){
 	$('#errorMessage').html("");
+	$('#errorMessage').css("background", "none");
 	//$('#firstName').css("border-bottom", "1px solid white");
 
 });
 $("#lastname").focus(function(){
 	$('#errorMessage').html("");
+	$('#errorMessage').css("background", "none");
 	//$('#lastName').css("border-bottom", "1px solid white");
 
 });
 $("#username").focus(function(){
 	$('#errorMessage').html("");
+	$('#errorMessage').css("background", "none");
 	//$('#userName').css("border-bottom", "1px solid white");
 
 });
 $("#email").focus(function(){
 	$('#errorMessage').html("");
+	$('#errorMessage').css("background", "none");
 	//$('#emailId').css("border-bottom", "1px solid white");
 
 });
 $("#password").focus(function(){
 	$('#errorMessage').html("");
 	$('#password').css("border-bottom", "1px solid white");
+	$('#errorMessage').css("background", "none");
 	//$('#password2').css("border-bottom", "1px solid white");
 
 });
 $("#confirmpassword").focus(function(){
 	$('#errorMessage').html("");
+	$('#errorMessage').css("background", "none");
 	//$('#password2').css("border-bottom", "1px solid white");
 	//$('#password').css("border-bottom", "1px solid white");
 

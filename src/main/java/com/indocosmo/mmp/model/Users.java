@@ -24,6 +24,7 @@ public class Users {
   private String username;
   private String password;
   private String role;
+  private String gender;
   
   
   public Integer getId() {
@@ -33,11 +34,21 @@ public class Users {
   public void setId(Integer id) {
     this.id = id;
   }
+  
+  
 
 
 
-  public Users( String firstname, String lastname, String phone, String city, String address, String region,
-		String country, String image, String email, String username, String password, String role) {
+  public String getGender() {
+	return gender;
+}
+
+public void setGender(String gender) {
+	this.gender = gender;
+}
+
+public Users( String firstname, String lastname, String phone, String city, String address, String region,
+		String country, String image, String email, String username, String password, String role,String gender) {
 	super();
 	this.firstname = firstname;
 	this.lastname = lastname;
@@ -51,6 +62,7 @@ public class Users {
 	this.username = username;
 	this.password = password;
 	this.role = role;
+	this.gender = gender;
 }
 
 public String getFirstname() {

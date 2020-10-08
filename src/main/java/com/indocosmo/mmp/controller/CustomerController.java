@@ -72,12 +72,10 @@ public class CustomerController {
 		Users customer = gson.fromJson(threadPid,Users.class);
 		
 		
-		System.out.println(customer.getUsername());
-		
-		
 		customer.setEmail(customer.getEmail().toLowerCase());
 		customer.setAddress("");
 		customer.setCity("");
+		customer.setGender(customer.getGender());
 		customer.setFirstname(customer.getFirstname());
 		customer.setLastname(customer.getLastname());
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));

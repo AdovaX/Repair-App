@@ -96,7 +96,9 @@ span.error_msg_span_register {
 }
 .error_class {
     color: #ff0000!important;
+    background:yellow;
 }
 .save_class {
     color: #3480eb!important;
+      background:yellow;
 }

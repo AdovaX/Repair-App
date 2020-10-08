@@ -38,9 +38,9 @@ public class CustomerServiceImpl implements CustomerService{
 	@Override
 	public void makeList() {
 		
-		Users cus=new Users("joshy","","","","","","","","joshy@gmail.com", "joshy", passwordEncoder.encode("123456"),"user");
+		Users cus=new Users("joshy","","","","","","","","joshy@gmail.com", "joshy", passwordEncoder.encode("123456"),"user","male");
 		customerRepository.save(cus);
-		 cus=new Users("midhun","","","","","","","","midhun@gmail.com", "midhun", passwordEncoder.encode("123456"),"user");
+		 cus=new Users("midhun","","","","","","","","midhun@gmail.com", "midhun", passwordEncoder.encode("123456"),"user","male");
 			customerRepository.save(cus);
 	}
 
