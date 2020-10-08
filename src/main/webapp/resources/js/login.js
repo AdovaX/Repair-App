@@ -7,7 +7,7 @@ $("#signUp").click(function(){
 	
 	var success = true;
 	var message = {};
-	//$('#errorMessage').removeClass("error_class");
+	$('#errorMessage').removeClass("error_class");
 	//$('#errorMessage').removeClass("save_class");
 	//var image = $('#file-1')[0].files[0];
 
@@ -15,11 +15,12 @@ $("#signUp").click(function(){
 	//alert(firstname);
 	var email="";
 	if ($.trim(firstname) == "") {
-		alert("firstname required");
-		//$('#errorMessage').addClass("error_class");
-		//$('#errorMessage').html("Firstname required");
+		//alert("firstname required");
+		$('#errorMessage').addClass("error_class");
+		$('#errorMessage').html("Firstname required");
 		//$('#firstName').css("border-bottom", "1px solid red");
 		success = false;
+		return;
 
 	} else {
 
@@ -27,11 +28,12 @@ $("#signUp").click(function(){
 			message.firstname = $('#firstname').val();
 		}else{
 			
-			alert("Invalid firstname");
-			//$('#errorMessage').addClass("error_class");
-			//$('#errorMessage').html("Invalid First Name");
+			//alert("Invalid firstname");
+			$('#errorMessage').addClass("error_class");
+			$('#errorMessage').html("Invalid First Name");
 			//$('#firstName').css("border-bottom", "1px solid red");
 			success = false;
+			return;
 		}
 	}
 	var lastName=$('#lastname').val();
@@ -39,11 +41,12 @@ $("#signUp").click(function(){
 	if(checkHtmRegex(lastName)){
 		message.lastname = $('#lastname').val();
 	}else{
-		alert("Invalid lastname");
-		//$('#errorMessage').addClass("error_class");
-		//$('#errorMessage').html("Invalid Last Name");
+		//alert("Invalid lastname");
+		$('#errorMessage').addClass("error_class");
+		$('#errorMessage').html("Invalid Last Name");
 		//$('#lastName').css("border-bottom", "1px solid red");
 		success = false;
+		return;
 	}
 
 
@@ -55,32 +58,35 @@ $("#signUp").click(function(){
 	}*/
 	var username = $('#username').val();
 	if ($.trim(username) == "") {
-		alert("Username required");
-		//$('#errorMessage').addClass("error_class");
-		//$('#errorMessage').html("Username required");
+		//alert("Username required");
+		$('#errorMessage').addClass("error_class");
+		$('#errorMessage').html("Username required");
 		//$('#userName').css("border-bottom", "1px solid red");
 		success = false;
+		return;
 
 	} else {
 
 		if(checkHtmRegex($('#username').val())){
 			message.username = $('#username').val();
 		}else{
-			alert("Invalid Username");
-			//$('#errorMessage').addClass("error_class");
-			//$('#errorMessage').html("Invalid Username");
+			//alert("Invalid Username");
+			$('#errorMessage').addClass("error_class");
+			$('#errorMessage').html("Invalid Username");
 			//$('#userName').css("border-bottom", "1px solid red");
 			success = false;
+			return;
 		}
 	}
 	var emailId = $('#email').val();
 	if ($.trim(emailId) == "") {
-		alert("Email address required");
-		//$('#errorMessage').addClass("error_class");
-		//$('#errorMessage').html("Email address required");
+		//alert("Email address required");
+		$('#errorMessage').addClass("error_class");
+		$('#errorMessage').html("Email address required");
 		//$('#emailId').css("border-bottom", "1px solid red");
 
 		success = false;
+		return;
 
 	}
 	else{
@@ -91,42 +97,46 @@ $("#signUp").click(function(){
 
 		}
 		else{
-			alert("Email address is incorrect");
-			//$('#errorMessage').addClass("error_class");
-			//$('#errorMessage').html("Email address is incorrect");
+			//alert("Email address is incorrect");
+			$('#errorMessage').addClass("error_class");
+			$('#errorMessage').html("Email address is incorrect");
 			//$('#emailId').css("border-bottom", "1px solid red");
 			success = false;
+			return;
 		}
 
 	}
 	var password = $('#password').val();
 
 	if ($('#password').val().length<6) {
-		alert("Password must contain 6 characters");
-		//$('#errorMessage').addClass("error_class");
-		//$('#errorMessage').html("Password must contain 6 characters");
+		//alert("Password must contain 6 characters");
+		$('#errorMessage').addClass("error_class");
+	     $('#errorMessage').html("Password must contain 6 characters");
 		//$('#password').css("border-bottom", "1px solid red");
 		success = false;
+		return;
 	}
 	if ($.trim(password) == "") {
-		alert("Password required");
-		//$('#errorMessage').addClass("error_class");
+		//alert("Password required");
+		$('#errorMessage').addClass("error_class");
 
-		//$('#errorMessage').html("Password required");
+		$('#errorMessage').html("Password required");
 		//$('#password').css("border-bottom", "1px solid red");
 		success = false;
+		return;
 
 	} else {
 		message.password = $('#password').val();
 	}
 	var password2 = $('#confirmpassword').val();
 	if ($.trim(password2) == "") {
-		alert("Confirm password required");
-		//$('#errorMessage').addClass("error_class");
-		//$('#password2').css("border-bottom", "1px solid red");
+		//alert("Confirm password required");
+		$('#errorMessage').addClass("error_class");
+		$('#password2').css("border-bottom", "1px solid red");
 
 		//$('#errorMessage').html("Confirm password required");
 		success = false;
+		return;
 
 	}
 
@@ -135,13 +145,14 @@ $("#signUp").click(function(){
 	var regex = /[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B/g; 
 	//password validation Req from user 
 	if(regex.test(password)){
-		alert("Password accepts only alpha numeric or special characters");
+		//alert("Password accepts only alpha numeric or special characters");
 
-		//$('#errorMessage').addClass("error_class");
-		//$('#errorMessage').html("Password accepts only alpha numeric or special characters");
+		$('#errorMessage').addClass("error_class");
+		$('#errorMessage').html("Password accepts only alpha numeric or special characters");
 		//$('#password').css("border-bottom", "1px solid red");
 
 		success = false;
+		return;
 
 	}
 
@@ -149,12 +160,13 @@ $("#signUp").click(function(){
 	var confirmPassword = $("#confirmpassword").val();
 
 	if (password != confirmPassword) {
-		alert("Password doesn't match");
-		//$('#errorMessage').addClass("error_class");
-		//$('#errorMessage').html("Password doesn't match");
+		//alert("Password doesn't match");
+		$('#errorMessage').addClass("error_class");
+		$('#errorMessage').html("Password doesn't match");
 		//$('#password').css("border-bottom", "1px solid red");
 		//$('#password2').css("border-bottom", "1px solid red");
 		success = false;
+		return;
 
 	} else {
 		message.password = $('#password').val();
@@ -186,8 +198,10 @@ $("#signUp").click(function(){
 
 				}*/
 			    if(data.message=="success"){
+			    	$('#errorMessage').addClass("save_class");
+					$('#errorMessage').html("Registered Successfully");
 			      
-			    		alert("Registration successful");
+			    		//alert("Registration successful");
 						window.location.href = 'login';
 						
 					
@@ -238,7 +252,7 @@ $("#signUp").click(function(){
 
 			error : function(xhr, error) {
 				console.log(xhr, error);
-				alert("Error occured on register");
+				//alert("Error occured on register");
 				//$('#errorMessage').addClass("error_class");
 				//$('#errorMessage').html("Unexpected error occurred while saving user details");
 				//$("#register").removeAttr("disabled", "");
@@ -251,6 +265,39 @@ $("#signUp").click(function(){
 
 	}
 	
+});
+
+$("#firstname").focus(function(){
+	$('#errorMessage').html("");
+	//$('#firstName').css("border-bottom", "1px solid white");
+
+});
+$("#lastname").focus(function(){
+	$('#errorMessage').html("");
+	//$('#lastName').css("border-bottom", "1px solid white");
+
+});
+$("#username").focus(function(){
+	$('#errorMessage').html("");
+	//$('#userName').css("border-bottom", "1px solid white");
+
+});
+$("#email").focus(function(){
+	$('#errorMessage').html("");
+	//$('#emailId').css("border-bottom", "1px solid white");
+
+});
+$("#password").focus(function(){
+	$('#errorMessage').html("");
+	$('#password').css("border-bottom", "1px solid white");
+	//$('#password2').css("border-bottom", "1px solid white");
+
+});
+$("#confirmpassword").focus(function(){
+	$('#errorMessage').html("");
+	//$('#password2').css("border-bottom", "1px solid white");
+	//$('#password').css("border-bottom", "1px solid white");
+
 });
 
 

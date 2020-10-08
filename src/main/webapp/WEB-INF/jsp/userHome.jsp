@@ -37,9 +37,10 @@
 <body>
 
 <div class="navbar">
-  <a href="userHome" id="home">User Home</a> 
-  <a href="getUsers" >show users</a>
-  <a href="getStudents" >show Students</a>
+  <a href="#" id="home">User Home</a> 
+  <a href="#" >Show users</a>
+  <a href="#" >Show repair request</a>
+   <a href="#" >Show repair history</a>
   <a href="logout" > Logout</a>
   </div> 
 </div>

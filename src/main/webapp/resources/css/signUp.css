@@ -86,3 +86,17 @@ color: white;
 .links a{
 margin-left: 4px;
 }
+span.error_msg_span_register {
+    height: 20px;
+    float: left;
+    line-height: 1;
+    text-align: center;
+    width: 100%;
+    font-size: 12px;
+}
+.error_class {
+    color: #ff0000!important;
+}
+.save_class {
+    color: #3480eb!important;
+}

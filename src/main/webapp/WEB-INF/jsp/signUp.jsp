@@ -40,26 +40,26 @@
 				</div>
 			</div>
 			<div class="card-body">
-				<form >
+				
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="Firstname" id="firstname">
+						<input type="text" class="form-control" placeholder="Firstname" id="firstname" autocomplete="off">
 						
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="Lastname" id="lastname">
+						<input type="text" class="form-control" placeholder="Lastname" id="lastname" autocomplete="off">
 					</div>
 					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
-						<input type="text" class="form-control" placeholder="Username" id="username">
+						<input type="text" class="form-control" placeholder="Username" id="username" autocomplete="off">
 					</div>
 					
 					
@@ -84,19 +84,19 @@
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 						</div>
-						<input type="email" class="form-control" placeholder="email" id="email">
+						<input type="email" class="form-control" placeholder="email" id="email" autocomplete="off">
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="password" id="password">
+						<input type="password" class="form-control" placeholder="password" id="password" autocomplete="off">
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
 							<span class="input-group-text"><i class="fas fa-key"></i></span>
 						</div>
-						<input type="password" class="form-control" placeholder="confirm password" id="confirmpassword">
+						<input type="password" class="form-control" placeholder="confirm password" id="confirmpassword" autocomplete="off">
 					</div>
 					<!-- <div class="row align-items-center remember">
 						<input type="checkbox">Remember Me
@@ -104,8 +104,9 @@
 					<div class="form-group">
 						<Button id="signUp" class="btn float-right login_btn">signUp</Button>
 					</div>
-				</form>
+				
 			</div>
+			<span id="errorMessage" class="error_msg_span_register"></span>
 			<div class="card-footer">
 				<div class="d-flex justify-content-center links">
 					<a href="login">Sign In</a>
