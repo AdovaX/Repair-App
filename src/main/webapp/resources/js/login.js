@@ -15,7 +15,7 @@ $("#signUp").click(function(){
 	//alert(firstname);
 	var email="";
 	if ($.trim(firstname) == "") {
-		alert("firstname error");
+		alert("firstname required");
 		//$('#errorMessage').addClass("error_class");
 		//$('#errorMessage').html("Firstname required");
 		//$('#firstName').css("border-bottom", "1px solid red");
@@ -27,7 +27,7 @@ $("#signUp").click(function(){
 			message.firstname = $('#firstname').val();
 		}else{
 			
-			alert("firstname html error");
+			alert("Invalid firstname");
 			//$('#errorMessage').addClass("error_class");
 			//$('#errorMessage').html("Invalid First Name");
 			//$('#firstName').css("border-bottom", "1px solid red");
@@ -39,7 +39,7 @@ $("#signUp").click(function(){
 	if(checkHtmRegex(lastName)){
 		message.lastname = $('#lastname').val();
 	}else{
-		alert("lastname html error");
+		alert("Invalid lastname");
 		//$('#errorMessage').addClass("error_class");
 		//$('#errorMessage').html("Invalid Last Name");
 		//$('#lastName').css("border-bottom", "1px solid red");
@@ -55,7 +55,7 @@ $("#signUp").click(function(){
 	}*/
 	var username = $('#username').val();
 	if ($.trim(username) == "") {
-		alert("username error");
+		alert("Username required");
 		//$('#errorMessage').addClass("error_class");
 		//$('#errorMessage').html("Username required");
 		//$('#userName').css("border-bottom", "1px solid red");
@@ -66,7 +66,7 @@ $("#signUp").click(function(){
 		if(checkHtmRegex($('#username').val())){
 			message.username = $('#username').val();
 		}else{
-			alert("username html error");
+			alert("Invalid Username");
 			//$('#errorMessage').addClass("error_class");
 			//$('#errorMessage').html("Invalid Username");
 			//$('#userName').css("border-bottom", "1px solid red");
@@ -75,7 +75,7 @@ $("#signUp").click(function(){
 	}
 	var emailId = $('#email').val();
 	if ($.trim(emailId) == "") {
-		alert("emailid error");
+		alert("Email address required");
 		//$('#errorMessage').addClass("error_class");
 		//$('#errorMessage').html("Email address required");
 		//$('#emailId').css("border-bottom", "1px solid red");
@@ -91,7 +91,7 @@ $("#signUp").click(function(){
 
 		}
 		else{
-			alert("emailid check error");
+			alert("Email address is incorrect");
 			//$('#errorMessage').addClass("error_class");
 			//$('#errorMessage').html("Email address is incorrect");
 			//$('#emailId').css("border-bottom", "1px solid red");
@@ -102,14 +102,14 @@ $("#signUp").click(function(){
 	var password = $('#password').val();
 
 	if ($('#password').val().length<6) {
-		alert("password length error");
+		alert("Password must contain 6 characters");
 		//$('#errorMessage').addClass("error_class");
 		//$('#errorMessage').html("Password must contain 6 characters");
 		//$('#password').css("border-bottom", "1px solid red");
 		success = false;
 	}
 	if ($.trim(password) == "") {
-		alert("password  error");
+		alert("Password required");
 		//$('#errorMessage').addClass("error_class");
 
 		//$('#errorMessage').html("Password required");
@@ -121,7 +121,7 @@ $("#signUp").click(function(){
 	}
 	var password2 = $('#confirmpassword').val();
 	if ($.trim(password2) == "") {
-		alert("cnfrm pswd error");
+		alert("Confirm password required");
 		//$('#errorMessage').addClass("error_class");
 		//$('#password2').css("border-bottom", "1px solid red");
 
@@ -135,7 +135,7 @@ $("#signUp").click(function(){
 	var regex = /[\u3000-\u303F]|[\u3040-\u309F]|[\u30A0-\u30FF]|[\uFF00-\uFFEF]|[\u4E00-\u9FAF]|[\u2605-\u2606]|[\u2190-\u2195]|\u203B/g; 
 	//password validation Req from user 
 	if(regex.test(password)){
-		alert("password regx error");
+		alert("Password accepts only alpha numeric or special characters");
 
 		//$('#errorMessage').addClass("error_class");
 		//$('#errorMessage').html("Password accepts only alpha numeric or special characters");
@@ -149,7 +149,7 @@ $("#signUp").click(function(){
 	var confirmPassword = $("#confirmpassword").val();
 
 	if (password != confirmPassword) {
-		alert("password equal error");
+		alert("Password doesn't match");
 		//$('#errorMessage').addClass("error_class");
 		//$('#errorMessage').html("Password doesn't match");
 		//$('#password').css("border-bottom", "1px solid red");
@@ -159,41 +159,6 @@ $("#signUp").click(function(){
 	} else {
 		message.password = $('#password').val();
 	}
-
-
-	/*$("#firstName").focus(function(){
-		$('#errorMessage').html("");
-		$('#firstName').css("border-bottom", "1px solid white");
-
-	});
-	$("#lastName").focus(function(){
-		$('#errorMessage').html("");
-		$('#lastName').css("border-bottom", "1px solid white");
-
-	});
-	$("#userName").focus(function(){
-		$('#errorMessage').html("");
-		$('#userName').css("border-bottom", "1px solid white");
-
-	});
-	$("#emailId").focus(function(){
-		$('#errorMessage').html("");
-		$('#emailId').css("border-bottom", "1px solid white");
-
-	});
-	$("#password").focus(function(){
-		$('#errorMessage').html("");
-		$('#password').css("border-bottom", "1px solid white");
-		$('#password2').css("border-bottom", "1px solid white");
-
-	});
-	$("#password2").focus(function(){
-		$('#errorMessage').html("");
-		$('#password2').css("border-bottom", "1px solid white");
-		$('#password').css("border-bottom", "1px solid white");
-
-	});
-*/
 
 	if (success) {
 		//$("#register").attr("disabled", "disabled");
@@ -211,7 +176,6 @@ $("#signUp").click(function(){
 			contentType : false,
 			processData : false,
 			success : function(data) {
-				alert("returneed");
 				/*if(data.status == "Username is already taken"){
 
 					$('#errorMessage').addClass("error_class");
@@ -222,7 +186,10 @@ $("#signUp").click(function(){
 
 				}*/
 			    if(data.message=="success"){
-					alert("success");
+			      
+			    		alert("Registration successful");
+						window.location.href = 'login';
+						
 					
 				}
 				/*else if(data.status == "Username/EmailId is already taken!"){
@@ -262,7 +229,7 @@ $("#signUp").click(function(){
 					}, 1000);*/
 				//}
 		else{
-			alert("false");
+			
 					//$('#errorMessage').addClass("error_class");
 					//$('#errorMessage').html("Unexpected error occurred");
 				}
@@ -271,7 +238,7 @@ $("#signUp").click(function(){
 
 			error : function(xhr, error) {
 				console.log(xhr, error);
-				alert("errorrrr");
+				alert("Error occured on register");
 				//$('#errorMessage').addClass("error_class");
 				//$('#errorMessage').html("Unexpected error occurred while saving user details");
 				//$("#register").removeAttr("disabled", "");

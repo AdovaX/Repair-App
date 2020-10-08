@@ -32,7 +32,7 @@
 	<div class="d-flex justify-content-center h-100">
 		<div class="card">
 			<div class="card-header">
-				<h3>Sign In</h3>
+				<h3>Sign Up</h3>
 				<div class="d-flex justify-content-end social_icon">
 					<span><i class="fab fa-facebook-square"></i></span>
 					<span><i class="fab fa-google-plus-square"></i></span>
@@ -50,14 +50,14 @@
 					</div>
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<input type="text" class="form-control" placeholder="Lastname" id="lastname">
 					</div>
 					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
 						</div>
 						<input type="text" class="form-control" placeholder="Username" id="username">
 					</div>
@@ -65,13 +65,13 @@
 					
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text"><i class="fas fa-male"></i></span>
 						</div>
-						<div class="gender_div_male"><input type="radio" name="gender" id="maleRadioBtn" value="male" checked="checked" style="margin-left:52px;"> <span>Male</span></div>
+						<div class="gender_div_male"><input type="radio" name="gender" id="maleRadioBtn"  checked="checked" style="margin-left:62px;"><span>Male</span> </div>
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text"><i class="fas fa-female"></i></span>
 						</div>
-						<div class="gender_div_female"><input type="radio" name="gender"  id="femaleRadioBtn" value="female" style="margin-left:65px;"> <span>Female</span></div>
+						<div class="gender_div_female"><input type="radio" name="gender"  id="femaleRadioBtn" style="margin-left:65px;"><span>Female</span></div>
 					</div>
 					
 					<!-- <div class="form-group label-floating text_box_div">
@@ -82,7 +82,7 @@
                         	
 					<div class="input-group form-group">
 						<div class="input-group-prepend">
-							<span class="input-group-text"><i class="fas fa-key"></i></span>
+							<span class="input-group-text"><i class="fas fa-envelope"></i></span>
 						</div>
 						<input type="email" class="form-control" placeholder="email" id="email">
 					</div>
@@ -102,7 +102,7 @@
 						<input type="checkbox">Remember Me
 					</div> -->
 					<div class="form-group">
-						<Button   value="Sign Up" id="signUp" class="btn float-right login_btn">signUp</Button>
+						<Button id="signUp" class="btn float-right login_btn">signUp</Button>
 					</div>
 				</form>
 			</div>
