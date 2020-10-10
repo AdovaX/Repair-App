@@ -41,6 +41,12 @@ public class CustomerController {
 		
 		return "login";
 	}
+	//test
+	@RequestMapping(value="/login2")
+	public String login2() {
+		
+		return "login2";
+	}
 	
 	@RequestMapping(value="/adminHome")
 	public String getAdminHome() {
@@ -52,6 +58,12 @@ public class CustomerController {
 	public String getUserHome() {
 		
 		return "userHome";
+	}
+	
+	@RequestMapping(value="/customerHome")
+	public String getCustomerHome() {
+		
+		return "customerHome";
 	}
 	
 
@@ -86,7 +98,7 @@ public class CustomerController {
 		customer.setRegion("");
 		
 		
-		customer.setRole("user");
+		customer.setRole("customer");
 		
 		
 		//customer.setUsername(username);

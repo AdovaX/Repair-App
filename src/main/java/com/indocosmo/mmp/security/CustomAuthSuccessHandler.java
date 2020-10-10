@@ -23,13 +23,17 @@ public class CustomAuthSuccessHandler extends SimpleUrlAuthenticationSuccessHand
 		//System.out.println("  onAuthenticationSuccess redirection         "  );
 		
 		String adminHome = "/adminHome";
-		String userHome = "/userHome";
+		String customerHome = "/customerHome";
+		String technicianHome = "/technicianHome";
 
 		Set<String> authorities = AuthorityUtils.authorityListToSet(authentication.getAuthorities());
 
-		if (authorities.contains("user")) {
+		if (authorities.contains("customer")) {
 		
-			getRedirectStrategy().sendRedirect(request, response, userHome);
+			getRedirectStrategy().sendRedirect(request, response, customerHome);
+		}else if (authorities.contains("technician")) {
+		
+			getRedirectStrategy().sendRedirect(request, response, technicianHome);
 		}
 		else if(authorities.contains("admin")) {
 			getRedirectStrategy().sendRedirect(request, response, adminHome);
