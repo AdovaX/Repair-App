@@ -18,7 +18,7 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
  
    @Autowired
-   SecurityUserDetailsService mongoUserDetailsService;
+   SecurityUserDetailsService securityUserDetailsService;
    
    @Autowired
    CustomAuthSuccessHandler customAuthSuccessHandler;
@@ -46,9 +46,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	   .exceptionHandling().accessDeniedHandler(accessDeniedHandler());
 	   
 	   //configure login form
-	   http.authorizeRequests().and().formLogin().loginPage("/login")
+	   http.authorizeRequests().and().formLogin()
+	   	.loginPage("/login")
 		   .successHandler(customAuthSuccessHandler)
-		   .failureUrl("/login?failed").usernameParameter("username")
+		   .failureUrl("/login?failed")
+		   .usernameParameter("email")
 		   .passwordParameter("password")
 		   
 		   // Config for Logout Page
@@ -62,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    
    @Override
    public void configure(AuthenticationManagerBuilder builder) throws Exception {
-    builder.userDetailsService(mongoUserDetailsService);
+    builder.userDetailsService(securityUserDetailsService);
    }
 }
 

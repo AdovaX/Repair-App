@@ -23,8 +23,8 @@ public class SecurityUserDetailsService implements UserDetailsService{
 	private CustomerRepository customerRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		Users customer=customerRepository.findByUsername(username);
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		Users customer=customerRepository.findByEmailId(email);
 		
 		if(customer == null) {
 	      throw new UsernameNotFoundException("User not found");
@@ -32,7 +32,7 @@ public class SecurityUserDetailsService implements UserDetailsService{
 		
 		List<SimpleGrantedAuthority> authorities = Arrays.asList(new SimpleGrantedAuthority(customer.getRole()));
 		
-	    return new User(customer.getUsername(), customer.getPassword(), authorities);
+	    return new User(customer.getEmail(), customer.getPassword(), authorities);
 	}
 
 }
