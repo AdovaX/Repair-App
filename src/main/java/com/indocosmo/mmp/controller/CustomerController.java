@@ -1,6 +1,11 @@
 package com.indocosmo.mmp.controller;
 
+import java.util.Date;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessResourceFailureException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +15,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.indocosmo.mmp.dto.ResponseDTO;
 import com.indocosmo.mmp.model.Users;
+import com.indocosmo.mmp.repository.CustomerRepository;
+import com.indocosmo.mmp.security.SecurityUtils;
 import com.indocosmo.mmp.service.CustomerService;
+
 
 @Controller
 public class CustomerController {
@@ -29,6 +39,10 @@ public class CustomerController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private CustomerRepository customerRepository ;
+	
 	
 	@RequestMapping(value="/")
 	public String indexPage() {
@@ -63,7 +77,16 @@ public class CustomerController {
 	@RequestMapping(value="/customerHome")
 	public String getCustomerHome() {
 		
-		return "customerHome";
+		Optional<Users> user=customerRepository.findByEmail(SecurityUtils.getCurrentUserLogin());
+		if (user.isPresent()) {
+			if (user.get().getIsVerified()==1) {
+				return "customerHome";
+			}else {
+				return "notVerified";
+			}
+		}else {
+			return null;
+		}
 	}
 	
 
@@ -91,20 +114,17 @@ public class CustomerController {
 		customer.setFirstname(customer.getFirstname());
 		customer.setLastname(customer.getLastname());
 		customer.setPassword(passwordEncoder.encode(customer.getPassword()));
-		customer.setUsername(customer.getUsername());
-		customer.setCountry("");
-		customer.setImage("");
 		customer.setPhone("");
 		customer.setRegion("");
 		
+		customer.setIsVerified(0);
+		customer.setToken(UUID.randomUUID().toString());
+		customer.setTokenDateTime(new Date());
+		
 		
 		customer.setRole("customer");
-		
-		
-		//customer.setUsername(username);
-		//customer.setPassword(passwordEncoder.encode(password));
-		//customer.setRole(role);
 		userService.signUp(customer);
+		
 		ResponseDTO responseDTO = new ResponseDTO();
 		responseDTO.setMessage("success");
 		
@@ -120,19 +140,6 @@ public class CustomerController {
 		return "success";
 	}
 	
-/*	@RequestMapping(value="/getStudents")
-	public String getStudents(Model model) {
-		
-		model.addAttribute("studentList", studentService.findAll());
-		return "studentList";
-	}*/
-	
-	/*@RequestMapping(value="/getUsers")
-	public String getUsers(Model model) {
-		
-		model.addAttribute("userList", userService.findAll());
-		return "usersList";
-	}*/
 	
 	@RequestMapping(value="/accessDenied")
 	public String accessDenied() {
@@ -147,5 +154,22 @@ public class CustomerController {
 		studentService.makeList();
 		
 		return message;
+	}
+	
+	
+	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
+	{
+	//check token
+	/*
+	 * if(token != null) { User user =
+	 * userRepository.findByEmailIdIgnoreCase(token.getUser().getEmailId());
+	 * user.setEnabled(true); userRepository.save(user);
+	 * modelAndView.setViewName("accountVerified"); } else {
+	 * modelAndView.addObject("message","The link is invalid or broken!");
+	 * modelAndView.setViewName("error"); }
+	 */
+		
+		return modelAndView;
 	}
 }

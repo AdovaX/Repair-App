@@ -1,6 +1,8 @@
 package com.indocosmo.mmp.model;
 
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,6 +27,9 @@ public class Users {
   private String password;
   private String role;
   private String gender;
+  private String token;
+  private Date tokenDateTime;
+  private int isVerified;
   
   
   public Integer getId() {
@@ -47,8 +52,11 @@ public void setGender(String gender) {
 	this.gender = gender;
 }
 
-public Users( String firstname, String lastname, String phone, String city, String address, String region,
-		String country, String image, String email, String username, String password, String role,String gender) {
+
+
+public Users(String firstname, String lastname, String phone, String city, String address, String region,
+		String country, String image, String email, String username, String password, String role, String gender,
+		String token, Date tokenDateTime, int isVerified) {
 	super();
 	this.firstname = firstname;
 	this.lastname = lastname;
@@ -63,6 +71,33 @@ public Users( String firstname, String lastname, String phone, String city, Stri
 	this.password = password;
 	this.role = role;
 	this.gender = gender;
+	this.token = token;
+	this.tokenDateTime = tokenDateTime;
+	this.isVerified = isVerified;
+}
+
+public String getToken() {
+	return token;
+}
+
+public void setToken(String token) {
+	this.token = token;
+}
+
+public Date getTokenDateTime() {
+	return tokenDateTime;
+}
+
+public void setTokenDateTime(Date tokenDateTime) {
+	this.tokenDateTime = tokenDateTime;
+}
+
+public int getIsVerified() {
+	return isVerified;
+}
+
+public void setIsVerified(int isVerified) {
+	this.isVerified = isVerified;
 }
 
 public String getFirstname() {
