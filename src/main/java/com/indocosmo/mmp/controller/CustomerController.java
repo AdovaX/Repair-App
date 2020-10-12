@@ -30,18 +30,14 @@ import com.indocosmo.mmp.service.CustomerService;
 
 @Controller
 public class CustomerController {
+
 	
 	@Autowired
-	private CustomerService studentService;
-	
-	@Autowired
-	private CustomerService userService;
+	private CustomerService customerService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@Autowired
-	private CustomerRepository customerRepository ;
 	
 	
 	@RequestMapping(value="/")
@@ -77,7 +73,7 @@ public class CustomerController {
 	@RequestMapping(value="/customerHome")
 	public String getCustomerHome() {
 		
-		Optional<Users> user=customerRepository.findByEmail(SecurityUtils.getCurrentUserLogin());
+		Optional<Users> user=customerService.getUserByEmail(SecurityUtils.getCurrentUserLogin());
 		if (user.isPresent()) {
 			if (user.get().getIsVerified()==1) {
 				return "customerHome";
@@ -121,9 +117,9 @@ public class CustomerController {
 		customer.setToken(UUID.randomUUID().toString());
 		customer.setTokenDateTime(new Date());
 		
-		
+	
 		customer.setRole("customer");
-		userService.signUp(customer);
+		customerService.signUp(customer);
 		
 		ResponseDTO responseDTO = new ResponseDTO();
 		responseDTO.setMessage("success");
@@ -151,11 +147,26 @@ public class CustomerController {
 	@RequestMapping(value="/makeList")
 	public String makeList() {
 		String message="success";
-		studentService.makeList();
+		customerService.makeList();
 		
 		return message;
 	}
 	
+	
+	@RequestMapping(value="/resendVerificationEmail", method= {RequestMethod.GET, RequestMethod.POST})
+	public  ResponseEntity<ResponseDTO> resendVerificationEmail()
+	{
+		ResponseDTO responseDTO = new ResponseDTO();
+		Optional<Users> user= customerService.getUserByEmail(SecurityUtils.getCurrentUserLogin());
+		if (user.isPresent()) {
+			customerService.resendVerificationEmail(user.get());
+			responseDTO.setMessage("success");
+		}
+		
+
+	
+		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+	}
 	
 	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)

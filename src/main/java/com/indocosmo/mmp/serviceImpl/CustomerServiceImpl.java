@@ -3,6 +3,7 @@ package com.indocosmo.mmp.serviceImpl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,29 @@ public class CustomerServiceImpl implements CustomerService{
 		Users cus2=new Users("midhun","","","","","","","","midhun@gmail.com", "midhun", passwordEncoder.encode("123456"),"customer","male",UUID.randomUUID().toString(),new Date(),0);
 		cus2=customerRepository.save(cus2);
 		emailSendService.sendConfirmationToken(cus2.getEmail(),cus2.getToken());
+	}
+
+	@Override
+	public Optional<Users> getUserByEmail(String currentUserEmail) {
+		
+		try {
+			return customerRepository.findByEmail(currentUserEmail);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
+
+	@Override
+	public void resendVerificationEmail(Users customer) {
+		
+		
+		customer.setToken(UUID.randomUUID().toString());
+		customer.setTokenDateTime(new Date());
+		customerRepository.save(customer);
+		emailSendService.sendConfirmationToken(customer.getEmail(),customer.getToken());
+		
 	}
 
 }
