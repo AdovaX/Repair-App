@@ -48,9 +48,10 @@ public class EmailSendServiceImpl implements EmailSendService{
 		mailMessage.setSubject("Complete Registration!");
 		mailMessage.setFrom("mmp.savan12@gmail.com");
 		mailMessage.setText("To confirm your account, please click here : "
-		+"http://localhost:8082/confirm-account?token="+token);
+		+"http://localhost:8080/confirm-account?token="+token);
 		
 		sendEmail(mailMessage);
+		System.out.println("sent mail to"+email);
 		
 	}
 	

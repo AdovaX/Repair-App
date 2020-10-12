@@ -1,6 +1,7 @@
 package com.indocosmo.mmp.security;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 
 @Configuration
 @EnableConfigurationProperties
@@ -33,28 +35,31 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
    
    @Override
    protected void configure(HttpSecurity http) throws Exception {
-     
-	   //disabling Cross-Site Request Forgery
-	   http.csrf().disable();
-	   //no authentication required
-	   http.authorizeRequests().antMatchers("/", "/login", "/logout","/signUp").permitAll();
-	   //authenticated users
-	   http.authorizeRequests().antMatchers("/getStudents","/adminHome","/userHome").authenticated();
-	   
-	   // restricting access
-	   http.authorizeRequests().antMatchers("/getUsers").hasAnyAuthority("admin").and()
-	   .exceptionHandling().accessDeniedHandler(accessDeniedHandler());
-	   
-	   //configure login form
-	   http.authorizeRequests().and().formLogin()
+    
+	   http.csrf().disable().headers()
+		.addHeaderWriter(
+				new XFrameOptionsHeaderWriter(XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
+		.and()
+		.authorizeRequests().antMatchers("/", "/resources/**").permitAll().and()
+		.authorizeRequests().antMatchers("/", "/login", "/logout","/signUp","/confirm-account").permitAll()
+		//.antMatchers("/company/**").hasAuthority(ROLE_USER)
+		//.antMatchers("/admin").hasAuthority(ROLE_SUPERUSER)
+		
+		//any request other than mentioned above
+		//we can comment this in developing environment
+		.anyRequest().authenticated()
+
+		 //configure login form
+		.and().formLogin()
 	   	.loginPage("/login")
 		   .successHandler(customAuthSuccessHandler)
 		   .failureUrl("/login?failed")
 		   .usernameParameter("email")
 		   .passwordParameter("password")
 		   
-		   // Config for Logout Page
-	       .and().logout().logoutUrl("/logout").logoutSuccessUrl("/login?logout");
+		.and().logout().logoutUrl("/logout").deleteCookies("remember-me").logoutSuccessUrl("/login?logout").permitAll()
+		.and().rememberMe();
+	   
    }
    
    @Bean

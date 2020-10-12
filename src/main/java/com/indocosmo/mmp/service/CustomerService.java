@@ -13,5 +13,7 @@ public interface CustomerService {
 	/*List<Customers> findAll();*/
 	void makeList();
 	Optional <Users>  getUserByEmail(String currentUserEmail);
+	
 	void resendVerificationEmail(Users users);
+	String verifyAccount(String confirmationToken);
 }

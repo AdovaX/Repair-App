@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.indocosmo.mmp.model.Users;
 import com.indocosmo.mmp.repository.CustomerRepository;
+import com.indocosmo.mmp.security.SecurityUtils;
 import com.indocosmo.mmp.service.CustomerService;
 import com.indocosmo.mmp.service.EmailSendService;
 
@@ -76,6 +77,40 @@ public class CustomerServiceImpl implements CustomerService{
 		customerRepository.save(customer);
 		emailSendService.sendConfirmationToken(customer.getEmail(),customer.getToken());
 		
+	}
+
+	@Override
+	public String verifyAccount(String confirmationToken) {
+		
+		Optional<Users> user=getUserByEmail(SecurityUtils.getCurrentUserLogin());
+		if (user.isPresent()) {
+			
+			if(user.get().getToken().contentEquals(confirmationToken)){
+				
+				//token generated time in minutes
+				long time1=(user.get().getTokenDateTime().getTime()/60000);
+				//current time in minutes
+				long time2=(new Date().getTime()/60000);
+				
+				long difference=time2-time1;
+				
+				if(difference>5) {
+					return "Sorry the token was expired";
+				}
+				else {
+					
+					//activate account
+					user.get().setIsVerified(1);
+					customerRepository.save(user.get());
+					return "Account activated successfully";
+				}
+
+			}else{
+				return "Invalid token";
+			}
+		}else {
+			return "Please make sure you logged in an other tab";
+		}
 	}
 
 }

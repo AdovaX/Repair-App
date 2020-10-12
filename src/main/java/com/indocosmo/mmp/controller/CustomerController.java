@@ -180,6 +180,12 @@ public class CustomerController {
 	 * modelAndView.addObject("message","The link is invalid or broken!");
 	 * modelAndView.setViewName("error"); }
 	 */
+	
+		//ResponseDTO responseDTO= new ResponseDTO();
+		//responseDTO.setMessage(customerService.verifyAccount(confirmationToken));
+		modelAndView.setViewName("confirmAccount");
+		modelAndView.addObject("message",customerService.verifyAccount(confirmationToken)); 
+		
 		
 		return modelAndView;
 	}
