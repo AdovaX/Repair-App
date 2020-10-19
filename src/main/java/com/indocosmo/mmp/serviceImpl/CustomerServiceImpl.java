@@ -55,6 +55,11 @@ public class CustomerServiceImpl implements CustomerService{
 		cus2=customerRepository.save(cus2);
 		emailSendService.sendConfirmationToken(cus2.getEmail(),cus2.getToken());
 	}
+		@Override
+	public Optional<Users> findByEmail(String email) {
+		// TODO Auto-generated method stub
+		return customerRepository.findByEmail(email);
+	}
 
 	@Override
 	public Optional<Users> getUserByEmail(String currentUserEmail) {

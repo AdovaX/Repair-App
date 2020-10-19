@@ -13,11 +13,11 @@ public interface CustomerService {
 	/*List<Customers> findAll();*/
 	void makeList();
 	Optional <Users>  getUserByEmail(String currentUserEmail);
-
+<<<<<<< HEAD
 	
-
+=======
 		Optional<Users> findByEmail(String email);
-
+>>>>>>> a6f1af3... dto changes for product and category
 	void resendVerificationEmail(Users users);
 	String verifyAccount(String confirmationToken);
 }

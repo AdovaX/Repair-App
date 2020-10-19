@@ -41,22 +41,22 @@
               <!-- <form class="user"> -->
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="text" class="form-control form-control-user" id="firstname" placeholder="First Name">
+                    <input type="text" class="form-control form-control-user" id="firstname" placeholder="First Name" autocomplete="off">
                   </div>
                   <div class="col-sm-6">
-                    <input type="text" class="form-control form-control-user" id="lastname" placeholder="Last Name">
+                    <input type="text" class="form-control form-control-user" id="lastname" placeholder="Last Name" autocomplete="off">
                   </div>
                 </div>
 
                 <div class="form-group">
-                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address">
+                  <input type="email" class="form-control form-control-user" id="email" placeholder="Email Address" autocomplete="off">
                 </div>
 
                   <!-- gender -->
                  <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
                     <div class="custom-control custom-radio custom-control-solid">
-                     <input class="custom-control-input" id="maleRadioBtn" type="radio" name="gender">
+                     <input class="custom-control-input" id="maleRadioBtn" checked="checked" type="radio" name="gender">
                       <label class="custom-control-label" for="maleRadioBtn">Male</label>
                     </div>
                   </div>
@@ -70,10 +70,10 @@
 
                 <div class="form-group row">
                   <div class="col-sm-6 mb-3 mb-sm-0">
-                    <input type="password" class="form-control form-control-user" id="password" placeholder="Password">
+                    <input type="password" class="form-control form-control-user" id="password" placeholder="Password" autocomplete="off">
                   </div>
                   <div class="col-sm-6">
-                    <input type="password" class="form-control form-control-user" id="confirmpassword" placeholder="Repeat Password">
+                    <input type="password" class="form-control form-control-user" id="confirmpassword" placeholder="Repeat Password" autocomplete="off">
                   </div>
                 </div>
 

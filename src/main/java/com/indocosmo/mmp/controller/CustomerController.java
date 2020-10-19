@@ -22,10 +22,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.indocosmo.mmp.dto.ResponseDTO;
+import com.indocosmo.mmp.model.Category;
 import com.indocosmo.mmp.model.Users;
 import com.indocosmo.mmp.repository.CustomerRepository;
 import com.indocosmo.mmp.security.SecurityUtils;
+import com.indocosmo.mmp.service.CategoryService;
 import com.indocosmo.mmp.service.CustomerService;
+import com.indocosmo.mmp.service.ProductService;
+
+import antlr.collections.List;
 
 
 @Controller
@@ -34,6 +39,12 @@ public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private ProductService productService;
+	
+	@Autowired
+	private CategoryService categoryService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -101,8 +112,15 @@ public class CustomerController {
 		Gson gson = new Gson();
 		
 		Users customer = gson.fromJson(threadPid,Users.class);
-		
-		
+				ResponseDTO responseDTO = new ResponseDTO();
+				
+				Optional<Users>  existingUser = customerService.findByEmail(customer.getEmail().toLowerCase());
+				
+				if(existingUser.isPresent()) {
+					responseDTO.setMessage("user already exist");
+					
+					
+				}else {
 		customer.setEmail(customer.getEmail().toLowerCase());
 		customer.setAddress("");
 		customer.setCity("");
@@ -120,9 +138,8 @@ public class CustomerController {
 	
 		customer.setRole("customer");
 		customerService.signUp(customer);
-		
-		ResponseDTO responseDTO = new ResponseDTO();
 		responseDTO.setMessage("success");
+				}
 		
 		
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
@@ -160,6 +177,43 @@ public class CustomerController {
 		Optional<Users> user= customerService.getUserByEmail(SecurityUtils.getCurrentUserLogin());
 		if (user.isPresent()) {
 			customerService.resendVerificationEmail(user.get());
+			responseDTO.setMessage("success");
+		}
+		
+
+	
+		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getCategory")
+	public  ResponseEntity<ResponseDTO> getCategory()
+	{
+		ResponseDTO responseDTO = new ResponseDTO();
+		Optional<Users> user= customerService.getUserByEmail(SecurityUtils.getCurrentUserLogin());
+		
+		if (user.isPresent()) {
+			
+			Iterable<Category> category = categoryService.findAllCategory();
+			responseDTO.setCategoryNames(category);
+			responseDTO.setMessage("success");
+		}
+		
+
+	
+		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/getProduct", produces = MediaType.APPLICATION_JSON_VALUE)
+	public  ResponseEntity<ResponseDTO> getProduct(@RequestParam int id)
+	{
+		//System.out.println("id is "+ id);
+		ResponseDTO responseDTO = new ResponseDTO();
+		Optional<Users> user= customerService.getUserByEmail(SecurityUtils.getCurrentUserLogin());
+		
+		if (user.isPresent()) {
+			
+			responseDTO.setProductList(productService.getproductByCategoryId(id));
+			//responseDTO.setCategoryNames(category);
 			responseDTO.setMessage("success");
 		}
 		

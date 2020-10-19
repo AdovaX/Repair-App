@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,8 +16,6 @@ import com.indocosmo.mmp.model.Users;
 import com.indocosmo.mmp.repository.CustomerRepository;
 import com.indocosmo.mmp.service.CustomerService;
 import com.indocosmo.mmp.service.EmailSendService;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 
 
@@ -33,6 +33,7 @@ public class EmailSendServiceImpl implements EmailSendService{
 	private EmailSendService emailSendService;
 
 	private JavaMailSender javaMailSender;	
+	
 	@Autowired
 	public EmailSendServiceImpl(JavaMailSender javaMailSender) {
     this.javaMailSender = javaMailSender;
