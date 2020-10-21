@@ -3,12 +3,14 @@ package com.indocosmo.mmp.dto;
 import java.util.List;
 
 import com.indocosmo.mmp.model.Category;
+import com.indocosmo.mmp.model.Productmodel;
 import com.indocosmo.mmp.model.Products;
 
 public class ResponseDTO {
 	private String message;
 	private Iterable<Category>  categoryNames;
 	private List<Products> productList;
+	private List<Productmodel> productModelList;
 	
 
 	public String getMessage() {
@@ -34,6 +36,16 @@ public class ResponseDTO {
 	public void setProductList(List<Products> productList) {
 		this.productList = productList;
 	}
+
+	public List<Productmodel> getProductModelList() {
+		return productModelList;
+	}
+
+	public void setProductModelList(List<Productmodel> productModelList) {
+		this.productModelList = productModelList;
+	}
+	
+	
 	
 	
 	

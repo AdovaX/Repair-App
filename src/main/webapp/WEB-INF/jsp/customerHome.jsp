@@ -66,7 +66,7 @@
         </a>
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
+           <!--  <h6 class="collapse-header">Custom Components:</h6> -->
             <a class="collapse-item" id="newRequest">New Request</a>
             <a class="collapse-item" href="cards.html">Request History</a>
           </div>
@@ -74,7 +74,7 @@
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
-      <li class="nav-item">
+     <!--  <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
           <span>Utilities</span>
@@ -88,18 +88,18 @@
             <a class="collapse-item" href="utilities-other.html">Other</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+     <!--  <hr class="sidebar-divider">
 
-      <!-- Heading -->
+      Heading
       <div class="sidebar-heading">
         Addons
-      </div>
+      </div> -->
 
       <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
+    <!--   <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
           <span>Pages</span>
@@ -116,24 +116,24 @@
             <a class="collapse-item" href="blank.html">Blank Page</a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="charts.html">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Charts</span></a>
-      </li>
+      </li> -->
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" href="tables.html">
           <i class="fas fa-fw fa-table"></i>
           <span>Tables</span></a>
-      </li>
+      </li> -->
 
       <!-- Divider -->
-      <hr class="sidebar-divider d-none d-md-block">
+      <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
       <!-- Sidebar Toggler (Sidebar) -->
       <div class="text-center d-none d-md-inline">
@@ -193,13 +193,13 @@
             </li>
 
             <!-- Nav Item - Alerts -->
-            <li class="nav-item dropdown no-arrow mx-1">
+            <!-- <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-bell fa-fw"></i>
-                <!-- Counter - Alerts -->
+                Counter - Alerts
                 <span class="badge badge-danger badge-counter">3+</span>
               </a>
-              <!-- Dropdown - Alerts -->
+              Dropdown - Alerts
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                 <h6 class="dropdown-header">
                   Alerts Center
@@ -239,16 +239,16 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
               </div>
-            </li>
+            </li> -->
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1">
+           <!--  <li class="nav-item dropdown no-arrow mx-1">
               <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="fas fa-envelope fa-fw"></i>
-                <!-- Counter - Messages -->
+                Counter - Messages
                 <span class="badge badge-danger badge-counter">7</span>
               </a>
-              <!-- Dropdown - Messages -->
+              Dropdown - Messages
               <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="messagesDropdown">
                 <h6 class="dropdown-header">
                   Message Center
@@ -295,7 +295,7 @@
                 </a>
                 <a class="dropdown-item text-center small text-gray-500" href="#">Read More Messages</a>
               </div>
-            </li>
+            </li> -->
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -363,17 +363,51 @@
 		  <select id='myProducts'>
 			 </select>
 		 </div>
-		   <!--  <button class="btn btn-primary dropdown-toggle" id="productDropdown" type="button" data-toggle="dropdown">Select Product
-		    <span class="caret"></span></button>
-		    <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
-		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Benz</a></li>
-		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Volvo</a></li>
-		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Maruti</a></li>
-		      <li role="presentation" class="divider"></li>
-		      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">About Us</a></li>    
-		    </ul> -->
 		  </div>
 		  </div>
+		  
+		  
+		  
+		  
+		  <div class="col-lg-7" id="newRegister">
+            <div class="p-5">
+              <div class="text-center">
+                <h1 class="h4 text-gray-900 mb-4">Register Request</h1>
+              </div>
+              <!-- <form class="user"> -->
+              <div class="form-group">
+			    <label for="exampleFormControlTextarea1">Fault Description</label>
+			    <textarea class="form-control" id="faultDesc" rows="4"></textarea>
+			  </div>
+			  
+			  <div class="form-group">
+			    <label for="exampleFormControlTextarea2">Accesories given with the fault product</label>
+			    <textarea class="form-control" id="Accesories" rows="2"></textarea>
+			  </div>
+			  
+			  <!-- <div class="form-group row"> -->
+                  <div class="dropdown productModel">
+					  <select id='productModel'>
+						 </select>
+				 </div>
+              <!--  </div> -->
+
+                  
+
+
+                <div class="form-group" style="height:15px;color: red">
+                    <span id="errorMessageRegister" class="error_msg_span_register" ></span>
+                </div>
+
+
+                <Button id="RegisterRequest" class="btn btn-primary btn-user btn-block">Register</Button>
+               
+              
+             
+            </div>
+          </div>
+          
+          
           <!-- Content Row -->
         <!--   <div class="row">
 
@@ -672,7 +706,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Black|white 2020</span>
+            <span>Copyright &copy; Black | white 2020</span>
           </div>
         </div>
       </footer>
@@ -707,6 +741,31 @@
       </div>
     </div>
   </div>
+  
+  <div id="confirmationModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+
+				<div class="modal-body invite_user_div">
+					<h2 style="font-size: 16px;">You are not given any of the accesories along with this product.
+					Are you sure you want to continue?</h2>
+
+				</div>
+				<div class="modal-footer">
+					<button class="btn btn-info" type="button"
+						style="float: inherit;" id="registerBack">
+						Yes
+						<div class="ripple-container"></div>
+					</button>
+					<button type="button" class="btn btn-default"
+						data-dismiss="modal" style="float: right;">No</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
   <!-- Bootstrap core JavaScript-->
 

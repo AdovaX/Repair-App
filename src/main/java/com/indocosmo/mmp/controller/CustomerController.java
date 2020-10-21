@@ -23,12 +23,15 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.gson.Gson;
 import com.indocosmo.mmp.dto.ResponseDTO;
 import com.indocosmo.mmp.model.Category;
+import com.indocosmo.mmp.model.Repairs;
 import com.indocosmo.mmp.model.Users;
 import com.indocosmo.mmp.repository.CustomerRepository;
 import com.indocosmo.mmp.security.SecurityUtils;
 import com.indocosmo.mmp.service.CategoryService;
 import com.indocosmo.mmp.service.CustomerService;
+import com.indocosmo.mmp.service.ProductModelService;
 import com.indocosmo.mmp.service.ProductService;
+import com.indocosmo.mmp.service.RepairService;
 
 import antlr.collections.List;
 
@@ -44,10 +47,18 @@ public class CustomerController {
 	private ProductService productService;
 	
 	@Autowired
+	private RepairService repairService;
+	
+	
+	@Autowired
 	private CategoryService categoryService;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private ProductModelService productmodelservice;
+	
 	
 	
 	
@@ -222,6 +233,56 @@ public class CustomerController {
 		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
 	}
 	
+	@RequestMapping(value="/getProductModel", produces = MediaType.APPLICATION_JSON_VALUE)
+	public  ResponseEntity<ResponseDTO> getProductModels(@RequestParam int id)
+	{
+		//System.out.println("id is "+ id);
+		ResponseDTO responseDTO = new ResponseDTO();
+		Optional<Users> user= customerService.getUserByEmail(SecurityUtils.getCurrentUserLogin());
+		
+		if (user.isPresent()) {
+			
+			responseDTO.setProductModelList(productmodelservice.getProductModelById(id));
+			responseDTO.setMessage("success");
+		}
+		
+
+	
+		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+	}
+	
+	@PostMapping(value="/repairRequest",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseDTO> repairRequest(MultipartHttpServletRequest request) {
+		Optional<Users> user= customerService.getUserByEmail(SecurityUtils.getCurrentUserLogin());
+		ResponseDTO responseDTO = new ResponseDTO();
+		if(user.isPresent()) {
+			String threadPid = request.getParameterValues("threadPid")[0];
+			Gson gson = new Gson();
+			
+			Repairs repair = gson.fromJson(threadPid,Repairs.class);
+			repair.setCustomerid(user.get().getId());
+			repair.setProductid(repair.getProductid());
+			repair.setAccesories(repair.getAccesories());
+			repair.setRepairdesc(repair.getRepairdesc());
+			repair.setStatus("new");
+			repair.setCreateddate(new Date());
+			repair.setModelid(repair.getModelid());
+			
+			repairService.repairRequest(repair);
+			responseDTO.setMessage("success");
+			
+			
+			
+			
+			
+			
+		}
+	
+		return new ResponseEntity<ResponseDTO>(responseDTO,HttpStatus.OK);
+		
+		
+	}
+	
 	@RequestMapping(value="/confirm-account", method= {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView confirmUserAccount(ModelAndView modelAndView, @RequestParam("token")String confirmationToken)
 	{
@@ -238,7 +299,7 @@ public class CustomerController {
 		//ResponseDTO responseDTO= new ResponseDTO();
 		//responseDTO.setMessage(customerService.verifyAccount(confirmationToken));
 		modelAndView.setViewName("confirmAccount");
-		modelAndView.addObject("message",customerService.verifyAccount(confirmationToken)); 
+		modelAndView.addObject("mess age",customerService.verifyAccount(confirmationToken)); 
 		
 		
 		return modelAndView;

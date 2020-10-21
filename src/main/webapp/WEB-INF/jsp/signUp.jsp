@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - signup</title>
+  <title>MMP SignUp</title>
 
   <!-- Custom fonts for this template-->
   <spring:url value="/resources/vendor/fontawesome-free/css/all.min.css" var="allCSS"></spring:url>
@@ -63,7 +63,7 @@
                   <div class="col-sm-6">
                      <div class="custom-control custom-radio custom-control-solid">
                        <input class="custom-control-input" id="femaleRadioBtn" type="radio" name="gender">
-                        <label class="custom-control-label" for="femaleRadioBtn">Fenale</label>
+                        <label class="custom-control-label" for="femaleRadioBtn">Female</label>
                       </div>
                   </div>
                 </div>
