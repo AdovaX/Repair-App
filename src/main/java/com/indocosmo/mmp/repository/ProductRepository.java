@@ -9,7 +9,7 @@ import com.indocosmo.mmp.model.Products;
 
 public interface ProductRepository extends CrudRepository<Products, Integer>{
 	
-	@Query(value="select * from Products where categoryId=?1",nativeQuery = true)
+	@Query(value="select * from products where categoryId=?1",nativeQuery = true)
 	List<Products> getProductByCategoryId(int id);
 	
 	
